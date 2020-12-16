@@ -1,0 +1,21 @@
+---
+es:
+  routes:
+    about: sobre
+    products: productos
+    people: gente
+    admin: administrador
+    cars: coches
+    categories: categorias
+    category: categoria
+    new_category: nueva
+    sold: vendidos
+
+  text:
+    welcome: Bienvenidos
+    about: Sobre
+    back: Regreso
+    cars: Coches
+    sold: Vendidos
+    new: Nueva
+    category: Categoria

@@ -1,0 +1,51 @@
+<h2><%= t('text.welcome') %></h2>
+
+<p>
+  I18n current locale : <%= I18n.locale %>
+</p>
+
+<p>
+  I18n default locale : <%= I18n.default_locale %>
+</p>
+
+<p>
+  I18n available locales : <%= I18n.available_locales %>
+</p>
+
+<p>
+  RouteTranslator config : <%= @route_translator.settings %>
+</p>
+
+<ul>
+  <li><%= link_to 'About FR', about_fr_path %></li>
+  <li><%= link_to 'About PT', about_pt_path %></li>
+  <li><%= link_to 'About ES', about_es_path %></li>
+  <li><%= link_to 'About EN', about_en_path %></li>
+</ul>
+
+<ul>
+  <li><%= link_to 'Admin Cars FR', admin_cars_fr_path %></li>
+  <li><%= link_to 'Admin Cars PT', admin_cars_pt_path %></li>
+  <li><%= link_to 'Admin Cars ES', admin_cars_es_path %></li>
+  <li><%= link_to 'Admin Cars EN', admin_cars_en_path %></li>
+</ul>
+
+<ul>
+  <li><%= link_to 'Category New FR', new_category_fr_path %></li>
+  <li><%= link_to 'Category New PT', new_category_pt_path %></li>
+  <li><%= link_to 'Category New ES', new_category_es_path %></li>
+  <li><%= link_to 'Category New EN', new_category_en_path %></li>
+</ul>
+
+<ul>
+  <li><%= link_to 'Sold Cars FR', sold_cars_cars_fr_path %></li>
+  <li><%= link_to 'Sold Cars PT', sold_cars_cars_pt_path %></li>
+  <li><%= link_to 'Sold Cars ES', sold_cars_cars_es_path %></li>
+  <li><%= link_to 'Sold Cars EN', sold_cars_cars_en_path %></li>
+</ul>
+
+<ul>
+  <li><%= link_to 'Baz site', baz_site.root_url %></li>
+  <li><%= link_to 'Foo site', foo_site.root_url(host: 'foo-domain.local') %></li>
+  <li><%= link_to 'Bar site', bar_site.root_url(host: 'bar-domain.local') %></li>
+</ul>

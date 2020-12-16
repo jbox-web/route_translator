@@ -1,0 +1,21 @@
+---
+pt:
+  routes:
+    about: quem-e
+    products: produtos
+    people: pessoas
+    admin: administrador
+    cars: carros
+    categories: categorias
+    category: categoria
+    new_category: nueva
+    sold: vendidos
+
+  text:
+    welcome: Bem-vinda
+    about: Quem-e
+    back: Retorna
+    cars: Carros
+    sold: Vendidos
+    new: Nueva
+    category: Categoria

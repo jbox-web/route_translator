@@ -1,0 +1,24 @@
+<h2><%= t('text.welcome') %></h2>
+
+<p>
+  I18n current locale : <%= I18n.locale %>
+</p>
+
+<p>
+  I18n default locale : <%= I18n.default_locale %>
+</p>
+
+<p>
+  I18n available locales : <%= I18n.available_locales %>
+</p>
+
+<p>
+  RouteTranslator config : <%= @route_translator.settings %>
+</p>
+
+<ul>
+  <li><%= link_to 'About FR', about_fr_path %></li>
+  <li><%= link_to 'About EN', about_en_path %></li>
+  <li><%= link_to 'About ES', about_es_path %></li>
+  <li><%= link_to 'About PT', about_pt_path %></li>
+</ul>

@@ -1,0 +1,63 @@
+---
+require:
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  TargetRubyVersion: 2.5
+  Exclude:
+    - bin/*
+    - gemfiles/*
+    - spec/**/*
+    - lib/route_translator/core_ext/mapper_patch.rb
+    - lib/route_translator/core_ext/route_set_patch.rb
+
+#########
+# RAILS #
+#########
+
+Rails:
+  Enabled: true
+
+##########
+# LAYOUT #
+##########
+
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLineBetweenDefs:
+  Enabled: false
+
+Layout/EmptyLines:
+  Enabled: false
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
+#########
+# STYLE #
+#########
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/Documentation:
+  Enabled: false
+
+###########
+# METRICS #
+###########
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 12
+
+Metrics/ClassLength:
+  Max: 120

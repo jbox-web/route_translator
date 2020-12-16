@@ -1,0 +1,21 @@
+---
+fr:
+  routes:
+    about: a-propos
+    products: produits
+    people: gens
+    admin: administrateur
+    cars: voitures
+    categories: categories
+    category: categorie
+    new_category: nouveau
+    sold: vendues
+
+  text:
+    welcome: Bienvenue
+    about: A propos
+    back: Retour
+    cars: Voitures
+    sold: Vendues
+    new: Nouvelle
+    category: Catégorie

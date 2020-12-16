@@ -1,0 +1,21 @@
+---
+en:
+  routes:
+    about: about
+    products: products
+    people: people
+    admin: administrator
+    cars: cars
+    categories: categories
+    category: category
+    new_category: new
+    sold: sold
+
+  text:
+    welcome: Welcome
+    about: About
+    back: Back
+    cars: Cars
+    sold: Sold
+    new: New
+    category: Category
