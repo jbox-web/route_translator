@@ -5,6 +5,6 @@ source "https://rubygems.org"
 gem "foo", path: "../spec/dummy/engines/foo"
 gem "bar", path: "../spec/dummy/engines/bar"
 gem "baz", path: "../spec/dummy/engines/baz"
-gem "rails", "6.0.3"
+gem "rails", "6.1.4"
 
 gemspec path: "../"
