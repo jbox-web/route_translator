@@ -10,6 +10,8 @@ module RouteTranslator
     #   I18n.locale = :fr
     #   people_path -> people_fr_path
     def add(old_name, named_route_collection, engine)
+      return if old_name.nil?
+
       helper_list = named_route_collection.helper_names
       translator  = RouteTranslator.translator_for(engine)
 
