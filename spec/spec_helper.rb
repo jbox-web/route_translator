@@ -14,19 +14,8 @@ require File.expand_path('dummy/config/environment.rb', __dir__)
 # Load test gems
 require 'rspec/rails'
 
-# Configure RSpec
-RSpec.configure do |config|
-  config.order = :random
-  Kernel.srand config.seed
-
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
-  end
-
-  # disable monkey patching
-  # see: https://relishapp.com/rspec/rspec-core/v/3-8/docs/configuration/zero-monkey-patching-mode
-  config.disable_monkey_patching!
-end
+# Load our own config
+require_relative 'config_rspec'
 
 module TestEngine
   class Engine < ::Rails::Engine
