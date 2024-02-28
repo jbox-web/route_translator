@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version     = Bar::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Nicolas Rodriguez']
-  s.email       = ['nicoladmin@free.fr']
+  s.email       = ['nico@nicoladmin.fr']
   s.homepage    = 'https://github.com/n-rodriguez/bar'
   s.summary     = 'Bar'
 

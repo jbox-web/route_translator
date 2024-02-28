@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.version       = RouteTranslator::VERSION::STRING
   s.platform      = Gem::Platform::RUBY
   s.authors       = ['Nicolas Rodriguez']
-  s.email         = ['nicoladmin@free.fr']
+  s.email         = ['nico@nicoladmin.fr']
   s.homepage      = 'http://github.com/jbox-web/route_translator'
   s.summary       = 'Translate your Rails routes in a simple manner'
   s.description   = 'Translates the Rails routes of your application into the languages defined in your locale files'
