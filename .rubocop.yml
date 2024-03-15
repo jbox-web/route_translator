@@ -14,6 +14,15 @@ AllCops:
     - lib/route_translator/core_ext/mapper_patch.rb
     - lib/route_translator/core_ext/route_set_patch.rb
 
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+Gemspec/RequireMFA:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
 #########
 # RAILS #
 #########

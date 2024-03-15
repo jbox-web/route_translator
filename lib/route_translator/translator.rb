@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RouteTranslator
-  class Translator
+  class Translator # rubocop:disable Metrics/ClassLength
 
     attr_reader :engine, :settings
 
@@ -47,7 +47,7 @@ module RouteTranslator
     end
 
 
-    def route_name_for(args, old_name, suffix, kaller)
+    def route_name_for(_args, old_name, suffix, kaller)
       current_locale_name = I18n.locale.to_s.underscore
 
       locale =
@@ -73,10 +73,10 @@ module RouteTranslator
       end
 
 
-      FINAL_OPTIONAL_SEGMENTS = %r{(\([^\/]+\))$}.freeze
+      FINAL_OPTIONAL_SEGMENTS = %r{(\([^\/]+\))$}
       private_constant :FINAL_OPTIONAL_SEGMENTS
 
-      JOINED_SEGMENTS = %r{\/\(\/}.freeze
+      JOINED_SEGMENTS = %r{/\(/}
       private_constant :JOINED_SEGMENTS
 
 
@@ -123,16 +123,12 @@ module RouteTranslator
 
       def translate_options(options, locale)
         translated_options = options.dup
-
-        if translated_options.exclude?(locale_param_key)
-          translated_options[locale_param_key] = sanitize(locale)
-        end
-
+        translated_options[locale_param_key] = sanitize(locale) if translated_options.exclude?(locale_param_key)
         translated_options
       end
 
 
-      SEGMENT_PART = /(\()$/.freeze
+      SEGMENT_PART = /(\()$/
       private_constant :SEGMENT_PART
 
       # rubocop:disable Metrics/CyclomaticComplexity
@@ -154,7 +150,7 @@ module RouteTranslator
       # rubocop:enable Metrics/CyclomaticComplexity
 
 
-      TRANSLATABLE_SEGMENT = /^([-_a-zA-Z0-9]+)(\()?/.freeze
+      TRANSLATABLE_SEGMENT = /^([-_a-zA-Z0-9]+)(\()?/
       private_constant :TRANSLATABLE_SEGMENT
 
       def translatable_segment(segment)
