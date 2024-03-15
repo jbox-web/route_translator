@@ -12,22 +12,22 @@ module RouteTranslator
 
 
     def default_locale
-      @default_locale ||= settings[:default_locale] || I18n.default_locale
+      settings.fetch(:default_locale) { I18n.default_locale }
     end
 
 
     def available_locales
-      @available_locales ||= settings[:available_locales] || I18n.available_locales
+      settings.fetch(:available_locales) { I18n.available_locales }
     end
 
 
     def locale_param_key
-      @locale_param_key ||= settings[:locale_param_key] || :locale
+      settings.fetch(:locale_param_key, :locale)
     end
 
 
     def disable_fallback
-      @disable_fallback ||= settings[:disable_fallback]
+      settings.fetch(:disable_fallback, false)
     end
 
 

@@ -63,15 +63,23 @@ RSpec.describe RouteTranslator::Translator do
       let(:subject) { described_class.new(:foo) }
 
       it 'fallbacks to default' do
-        expect(subject.disable_fallback).to be nil
+        expect(subject.disable_fallback).to be false
       end
     end
 
-    context 'when disable_fallback is set' do
+    context 'when disable_fallback is set to true' do
       let(:subject) { described_class.new(:foo, disable_fallback: true) }
 
       it 'returns sets value' do
         expect(subject.disable_fallback).to be true
+      end
+    end
+
+    context 'when disable_fallback is set to false' do
+      let(:subject) { described_class.new(:foo, disable_fallback: false) }
+
+      it 'returns sets value' do
+        expect(subject.disable_fallback).to be false
       end
     end
   end
