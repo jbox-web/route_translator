@@ -2,7 +2,7 @@
 
 module RouteTranslator
   class Route
-    attr_reader :route_set, :path, :name, :options_constraints, :options, :mapping
+    attr_reader :route_set, :path, :name, :options_constraints, :options, :mapping, :scope
 
     def initialize(route_set, path, name, options_constraints, options, mapping)
       @route_set           = route_set
@@ -11,11 +11,8 @@ module RouteTranslator
       @options_constraints = options_constraints
       @options             = options
       @mapping             = mapping
-    end
 
-
-    def scope
-      @scope ||=
+      @scope =
         if mapping.defaults[:controller]
           %i[routes controllers].concat mapping.defaults[:controller].split('/').map(&:to_sym)
         else
