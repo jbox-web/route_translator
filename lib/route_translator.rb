@@ -24,6 +24,3 @@ module RouteTranslator
   end
 
 end
-
-ActionDispatch::Routing::Mapper.prepend(RouteTranslator::CoreExt::MapperPatch)
-ActionDispatch::Routing::RouteSet.prepend(RouteTranslator::CoreExt::RouteSetPatch)
