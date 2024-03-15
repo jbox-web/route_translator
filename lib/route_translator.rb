@@ -13,8 +13,9 @@ module RouteTranslator
 
   require 'route_translator/railtie' if defined?(::Rails::Railtie)
 
+  @translators = {}
+
   def self.add_translator(engine, opts = {})
-    @translators ||= {}
     @translators[engine] = Translator.new(engine, opts)
   end
 
