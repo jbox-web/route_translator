@@ -38,4 +38,11 @@ Gem::Specification.new do |s|
     s.add_development_dependency 'net-pop'
     s.add_development_dependency 'net-smtp'
   end
+
+  if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.4.0')
+    s.add_runtime_dependency 'base64'
+    s.add_runtime_dependency 'drb'
+    s.add_runtime_dependency 'bigdecimal'
+    s.add_runtime_dependency 'mutex_m'
+  end
 end
