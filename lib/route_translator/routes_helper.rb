@@ -9,7 +9,7 @@ module RouteTranslator
     #   people_path -> people_de_path
     #   I18n.locale = :fr
     #   people_path -> people_fr_path
-    def add(old_name, named_route_collection, engine)
+    def add(old_name, named_route_collection, engine) # rubocop:disable Metrics/MethodLength
       return if old_name.nil?
 
       helper_list = named_route_collection.helper_names

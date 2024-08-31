@@ -4,7 +4,7 @@ module RouteTranslator
   class Route
     attr_reader :route_set, :path, :name, :options_constraints, :options, :mapping, :scope
 
-    def initialize(route_set, path, name, options_constraints, options, mapping) # rubocop:disable Metrics/ParameterLists
+    def initialize(route_set, path, name, options_constraints, options, mapping) # rubocop:disable Metrics/ParameterLists, Metrics/MethodLength
       @route_set           = route_set
       @path                = path
       @name                = name

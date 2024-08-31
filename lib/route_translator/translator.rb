@@ -31,7 +31,7 @@ module RouteTranslator
     end
 
 
-    def translations_for(route)
+    def translations_for(route) # rubocop:disable Metrics/AbcSize
       RouteTranslator::RoutesHelper.add(route.name, route.route_set.named_routes, engine)
 
       available_locales.each do |locale|
@@ -51,9 +51,9 @@ module RouteTranslator
       current_locale_name = I18n.locale.to_s.underscore
 
       locale =
-        if kaller.respond_to?("#{old_name}_native_#{current_locale_name}_#{suffix}")
+        if kaller.respond_to?(:"#{old_name}_native_#{current_locale_name}_#{suffix}")
           "native_#{current_locale_name}"
-        elsif kaller.respond_to?("#{old_name}_#{current_locale_name}_#{suffix}")
+        elsif kaller.respond_to?(:"#{old_name}_#{current_locale_name}_#{suffix}")
           current_locale_name
         else
           default_locale.to_s.underscore
@@ -80,7 +80,7 @@ module RouteTranslator
       private_constant :JOINED_SEGMENTS
 
 
-      def do_translate_path(path, locale, scope)
+      def do_translate_path(path, locale, scope) # rubocop:disable Metrics/AbcSize
         new_path = path.dup
 
         final_optional_segments = new_path.slice!(FINAL_OPTIONAL_SEGMENTS)
@@ -91,9 +91,7 @@ module RouteTranslator
 
         translated_segments.reject!(&:empty?)
 
-        if display_locale?(locale) && !locale_param_present?(new_path)
-          translated_segments.unshift(locale_segment(locale))
-        end
+        translated_segments.unshift(locale_segment(locale)) if display_locale?(locale) && !locale_param_present?(new_path)
 
         joined_segments = translated_segments.join('/')
 
@@ -112,11 +110,7 @@ module RouteTranslator
 
       def translate_options_constraints(options_constraints, locale)
         translated_options_constraints = options_constraints.dup
-
-        if translated_options_constraints.respond_to?(:[]=)
-          translated_options_constraints[locale_param_key] = locale.to_s
-        end
-
+        translated_options_constraints[locale_param_key] = locale.to_s if translated_options_constraints.respond_to?(:[]=)
         translated_options_constraints
       end
 

@@ -4,6 +4,7 @@ require:
   - rubocop-rails
   - rubocop-rake
   - rubocop-rspec
+  - rubocop-rspec_rails
 
 AllCops:
   NewCops: enable
@@ -15,63 +16,40 @@ AllCops:
     - lib/route_translator/core_ext/mapper_patch.rb
     - lib/route_translator/core_ext/route_set_patch.rb
 
-Gemspec/DevelopmentDependencies:
-  Enabled: false
-
-Gemspec/RubyVersionGlobalsUsage:
-  Enabled: false
-
 Gemspec/RequireMFA:
   Enabled: false
-
-Bundler/OrderedGems:
-  Enabled: false
-
-#########
-# RAILS #
-#########
-
-Rails:
-  Enabled: true
-
-##########
-# LAYOUT #
-##########
-
-Layout/EmptyLinesAroundModuleBody:
-  Enabled: false
-
-Layout/EmptyLinesAroundClassBody:
-  Enabled: false
-
-Layout/EmptyLineBetweenDefs:
-  Enabled: false
-
-Layout/EmptyLines:
-  Enabled: false
-
-Layout/IndentationConsistency:
-  EnforcedStyle: indented_internal_methods
 
 #########
 # STYLE #
 #########
 
-Style/EmptyMethod:
-  EnforcedStyle: expanded
-
 Style/Documentation:
   Enabled: false
 
-###########
-# METRICS #
-###########
+Style/HashSyntax:
+  EnforcedShorthandSyntax: never
 
-Metrics/AbcSize:
+##########
+# LAYOUT #
+##########
+
+Layout/LineLength:
+  Max: 125
+
+Layout/EmptyLines:
   Enabled: false
 
-Metrics/MethodLength:
-  Max: 12
+Layout/EmptyLineBetweenDefs:
+  Enabled: false
 
-Metrics/ClassLength:
-  Max: 120
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+
+Layout/EmptyLinesAroundModuleBody:
+  Enabled: false
+
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
