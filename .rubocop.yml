@@ -12,7 +12,7 @@ AllCops:
   Exclude:
     - bin/*
     - gemfiles/*
-    - spec/**/*
+    - spec/dummy/**/*
     - lib/route_translator/core_ext/mapper_patch.rb
     - lib/route_translator/core_ext/route_set_patch.rb
 
@@ -29,12 +29,17 @@ Style/Documentation:
 Style/HashSyntax:
   EnforcedShorthandSyntax: never
 
+Style/BlockDelimiters:
+  AllowedPatterns: ['expect']
+
 ##########
 # LAYOUT #
 ##########
 
 Layout/LineLength:
   Max: 125
+  Exclude:
+    - spec/**/*
 
 Layout/EmptyLines:
   Enabled: false
@@ -53,3 +58,10 @@ Layout/EmptyLinesAroundModuleBody:
 
 Layout/IndentationConsistency:
   EnforcedStyle: indented_internal_methods
+
+#########
+# RSPEC #
+#########
+
+RSpec/NestedGroups:
+  Max: 4

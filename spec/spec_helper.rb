@@ -22,8 +22,10 @@ module TestEngine
     isolate_namespace TestEngine
   end
 
-  class WelcomeController < ::ActionController::Base
-    def index
-    end
+  class ApplicationController < ::ActionController::Base
+  end
+
+  class WelcomeController < ApplicationController
+    def index; end
   end
 end
