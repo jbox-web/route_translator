@@ -1,17 +1,20 @@
 # frozen_string_literal: true
 
+# require external dependencies
 require 'addressable/uri'
-
 require 'zeitwerk'
-loader = Zeitwerk::Loader.for_gem
-loader.setup
+
+# load zeitwerk
+Zeitwerk::Loader.for_gem.tap do |loader| # rubocop:disable Style/SymbolProc
+  loader.setup
+end
 
 module RouteTranslator
 
   class BaseError          < StandardError; end
   class TranslatorNotFound < BaseError; end
 
-  require 'route_translator/railtie' if defined?(::Rails::Railtie)
+  require_relative 'route_translator/railtie' if defined?(::Rails::Railtie)
 
   @translators = {}
 
