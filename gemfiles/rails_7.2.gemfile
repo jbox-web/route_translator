@@ -18,14 +18,6 @@ gem "sqlite3", "~> 1.5.0"
 gem "bar", path: "../spec/dummy/engines/bar"
 gem "baz", path: "../spec/dummy/engines/baz"
 gem "foo", path: "../spec/dummy/engines/foo"
-gem "rails", "7.0.8"
-
-install_if -> { Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.3.0") } do
-  gem "base64"
-  gem "bigdecimal"
-  gem "mutex_m"
-  gem "drb"
-  gem "logger"
-end
+gem "rails", "~> 7.2.0"
 
 gemspec path: "../"
