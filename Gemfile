@@ -17,7 +17,7 @@ gem 'rubocop-rake'
 gem 'rubocop-rspec'
 gem 'rubocop-rspec_rails'
 gem 'simplecov'
-gem 'sqlite3', '~> 1.5.0'
+gem 'sqlite3', '~> 2.1.0'
 
 gem 'bar', path: 'spec/dummy/engines/bar'
 gem 'baz', path: 'spec/dummy/engines/baz'
