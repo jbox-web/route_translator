@@ -5,6 +5,10 @@ module RouteTranslator
     module MapperPatch
       extend ActiveSupport::Concern
 
+      URI_PARSER = defined?(URI::RFC2396_PARSER) ? URI::RFC2396_PARSER : URI::DEFAULT_PARSER
+      private_constant :URI_PARSER
+
+
       def localized(engine)
         @localized = true
         @engine = engine
@@ -46,7 +50,7 @@ module RouteTranslator
             name_for_action(options.delete(:as), action)
           end
 
-          path = ActionDispatch::Routing::Mapper::Mapping.normalize_path URI::DEFAULT_PARSER.escape(path), formatted
+          path = ActionDispatch::Routing::Mapper::Mapping.normalize_path URI_PARSER.escape(path), formatted
           ast = ActionDispatch::Journey::Parser.parse path
 
           mapping = ActionDispatch::Routing::Mapper::Mapping.build(@scope, @set, ast, controller, default_action, to, via, formatted, options_constraints, anchor, options)
