@@ -73,7 +73,7 @@ module RouteTranslator
       end
 
 
-      FINAL_OPTIONAL_SEGMENTS = %r{(\([^\/]+\))$}
+      FINAL_OPTIONAL_SEGMENTS = %r{(\([^/]+\))$}
       private_constant :FINAL_OPTIONAL_SEGMENTS
 
       JOINED_SEGMENTS = %r{/\(/}
