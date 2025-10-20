@@ -65,10 +65,10 @@ module RouteTranslator
 
 
         def _add_localized_route(scope, set, ast, controller, default_action, to, via, formatted, options_constraints, anchor, options, mapping, as, path, engine)
-          route = RouteTranslator::Route.new(set, path, as, options_constraints, options, mapping)
           translator = RouteTranslator.translator_for(engine)
-
           raise RouteTranslator::TranslatorNotFound, "RouteTranslator is not configured for current engine : #{engine}" if translator.nil?
+
+          route = RouteTranslator::Route.new(set, path, as, options_constraints, options, mapping)
 
           translator.translations_for(route) do |locale, translated_name, translated_path, translated_options_constraints, translated_options|
             translated_path_ast = ::ActionDispatch::Journey::Parser.parse(translated_path)
