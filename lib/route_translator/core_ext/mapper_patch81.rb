@@ -30,7 +30,7 @@ module RouteTranslator
 
         def localized_add_route(action, controller, as, options_action, _path, to, via, formatted, anchor, options_constraints, internal, options_mapping)
           # From Rails source
-          # See: https://github.com/rails/rails/blob/main/actionpack/lib/action_dispatch/routing/mapper.rb#L2195
+          # See: https://github.com/rails/rails/blob/v8.1.0.rc1/actionpack/lib/action_dispatch/routing/mapper.rb#L2193
           path = path_for_action(action, _path)
           raise ArgumentError, "path is required" if path.blank?
 
