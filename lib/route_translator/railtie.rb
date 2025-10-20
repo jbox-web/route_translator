@@ -21,7 +21,6 @@ module RouteTranslator
 
     initializer 'route_translator.patch' do
       ActionDispatch::Routing::Mapper.prepend(RouteTranslator::CoreExt::MapperPatch)
-      ActionDispatch::Routing::RouteSet.prepend(RouteTranslator::CoreExt::RouteSetPatch)
     end
 
   end
