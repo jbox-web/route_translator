@@ -51,7 +51,7 @@ module RouteTranslator
           end
 
           path = ActionDispatch::Routing::Mapper::Mapping.normalize_path URI_PARSER.escape(path), formatted
-          ast = ActionDispatch::Journey::Parser.parse path
+          ast  = ActionDispatch::Journey::Parser.parse path
 
           mapping = ActionDispatch::Routing::Mapper::Mapping.build(@scope, @set, ast, controller, default_action, to, via, formatted, options_constraints, anchor, options)
           # End of Rails source
