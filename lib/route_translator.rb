@@ -27,4 +27,9 @@ module RouteTranslator
     @translators[engine]
   end
 
+
+  def self.rails_81?
+    Gem::Version.new(Rails::VERSION::STRING) >= Gem::Version.new('8.1.0.rc1')
+  end
+
 end

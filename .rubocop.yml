@@ -14,6 +14,7 @@ AllCops:
     - gemfiles/*
     - spec/dummy/**/*
     - lib/route_translator/core_ext/mapper_patch.rb
+    - lib/route_translator/core_ext/mapper_patch81.rb
 
 Gemspec/RequireMFA:
   Enabled: false

@@ -20,7 +20,8 @@ module RouteTranslator
 
 
     initializer 'route_translator.patch' do
-      ActionDispatch::Routing::Mapper.prepend(RouteTranslator::CoreExt::MapperPatch)
+      mapper_patch = RouteTranslator.rails_81? ? 'RouteTranslator::CoreExt::MapperPatch81' : 'RouteTranslator::CoreExt::MapperPatch'
+      ActionDispatch::Routing::Mapper.prepend(mapper_patch.constantize)
     end
 
   end

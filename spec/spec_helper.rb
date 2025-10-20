@@ -23,6 +23,7 @@ require 'simplecov_json_formatter'
 # Start SimpleCov
 SimpleCov.start do
   formatter SimpleCov::Formatter::MultiFormatter.new([SimpleCov::Formatter::HTMLFormatter, SimpleCov::Formatter::JSONFormatter])
+  add_filter 'gemfiles/'
   add_filter 'spec/'
 end
 
