@@ -16,6 +16,9 @@ require File.expand_path('dummy/config/environment.rb', __dir__)
 # Load test gems
 require 'rspec/rails'
 
+# Load dbg gem
+require 'dbg-rb'
+
 # Configure RSpec
 RSpec.configure do |config|
   config.order = :random
@@ -29,6 +32,9 @@ RSpec.configure do |config|
   # see: https://relishapp.com/rspec/rspec-core/v/3-8/docs/configuration/zero-monkey-patching-mode
   config.disable_monkey_patching!
 end
+
+# Configure dbg
+DbgRb.highlight!('🎉💔💣🕺🚀🧨🙈🤯🥳🌈🦄')
 
 module TestEngine
   class Engine < ::Rails::Engine
