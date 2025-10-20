@@ -12,6 +12,7 @@ gem 'rake'
 gem 'rspec-rails'
 gem 'simplecov'
 gem 'sqlite3', '~> 2.1.0'
+gem 'warning'
 
 gem 'bar', path: 'spec/dummy/engines/bar'
 gem 'baz', path: 'spec/dummy/engines/baz'
