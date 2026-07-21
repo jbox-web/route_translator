@@ -14,7 +14,7 @@ module RouteTranslator
 
       @scope =
         if mapping.defaults[:controller]
-          %i[routes controllers].concat mapping.defaults[:controller].split('/').map(&:to_sym)
+          %i[routes controllers] + mapping.defaults[:controller].split('/').map(&:to_sym)
         else
           %i[routes controllers]
         end

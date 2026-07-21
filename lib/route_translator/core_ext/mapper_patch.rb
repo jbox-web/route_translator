@@ -13,6 +13,9 @@ module RouteTranslator
         @localized = true
         @engine = engine
         yield
+      ensure
+        # Reset in ensure so a raise while drawing the block (e.g. TranslatorNotFound)
+        # can't leave the mapper flagged as localized for the routes that follow.
         @localized = false
         @engine = nil
       end

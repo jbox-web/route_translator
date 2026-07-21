@@ -36,7 +36,17 @@ module RouteTranslator
         def extract_locale_from_params
           return if route_translator.nil?
 
-          params[route_translator.locale_param_key] || route_translator.default_locale
+          locale = params[route_translator.locale_param_key]
+
+          # Guard against user-supplied locales: an unknown value would raise
+          # I18n::InvalidLocale (with enforce_available_locales on) or silently
+          # apply an attacker-controlled locale (with it off). Fall back to the
+          # engine default when the param is missing or not an available locale.
+          # Compare via #to_s so a malformed param (Array/Hash) can't raise here.
+          available = route_translator.available_locales.map(&:to_s)
+          return route_translator.default_locale if locale.blank? || available.exclude?(locale.to_s)
+
+          locale
         end
 
 

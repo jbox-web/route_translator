@@ -8,9 +8,12 @@ RouteTranslator is a gem to allow you to manage the translations of your Rails a
 
 It started as a rewrite of the awesome [route_translator](https://github.com/enriclluelles/route_translator) plugin by Geremia Taglialatela to [keep support of Rails engines](https://github.com/enriclluelles/route_translator/issues/178).
 
-Right now it works with Rails 5.2 and Rails 6.x.
+It requires Rails 7.0+ and Ruby 3.2+ (tested against Rails 7.2, 8.0 and 8.1).
 
 ## Installation
+
+This fork is distributed through GitHub only: the `route_translator` name on
+RubyGems hosts the original gem, so install it from this repository instead.
 
 Put this in your `Gemfile` :
 
