@@ -122,7 +122,8 @@ RSpec.describe RouteTranslator::Translator do
     subject(:translator) { described_class.new(:main_site, disable_fallback: disable_fallback) }
 
     before do
-      allow(translator).to receive(:do_translate_path)
+      # Stubbing the subject's own I18n call is how we simulate a missing translation.
+      allow(translator).to receive(:do_translate_path) # rubocop:disable RSpec/SubjectStub
         .and_raise(I18n::MissingTranslationData.new(:es, 'routes.missing', {}))
     end
 
@@ -189,16 +190,22 @@ RSpec.describe RouteTranslator::Translator do
     end
 
     # A controller-less mapping exercises Route's fallback scope ([:routes, :controllers]).
+    # Verified doubles of Rails' Mapping/route_set internals would be brittle here.
+    # rubocop:disable RSpec/VerifiedDoubles
     let(:mapping)      { double('mapping', defaults: {}) }
     let(:named_routes) { double('named_routes', names: []) }
     let(:route_set)    { double('route_set', named_routes: named_routes) }
+    # rubocop:enable RSpec/VerifiedDoubles
     let(:route)        { RouteTranslator::Route.new(route_set, '/foo', nil, {}, {}, mapping) }
 
+    # Stubbing the subject's translate_path per-locale is how we drive the nil-skip branch.
+    # rubocop:disable RSpec/SubjectStub
     before do
       allow(translator).to receive(:translate_path).and_call_original
       allow(translator).to receive(:translate_path).with('/foo', :es, anything).and_return(nil)
       allow(translator).to receive(:translate_path).with('/foo', :fr, anything).and_return('/foo')
     end
+    # rubocop:enable RSpec/SubjectStub
 
     it 'skips locales whose translated path is nil' do
       yielded = []

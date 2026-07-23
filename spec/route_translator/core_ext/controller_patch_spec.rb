@@ -7,10 +7,14 @@ require 'spec_helper'
 # is then nil and `route_translator` resolves to nil, which must be handled
 # gracefully (no locale switching, no crash).
 RSpec.describe RouteTranslator::CoreExt::ControllerPatch do
-  subject(:controller) { Class.new(ActionController::Base).new }
+  # A bare ActionController::Base subclass (not ApplicationController) is required
+  # here: it inherits the patch without ever calling `localized`, exercising the
+  # nil-engine path. Subclassing ApplicationController would defeat the test.
+  subject(:controller) { Class.new(ActionController::Base).new } # rubocop:disable Rails/ApplicationController
 
   describe '#set_locale_from_params without a configured engine' do
-    it 'yields without altering I18n.locale' do
+    # Both expectations are the point: the block runs AND the locale is left intact.
+    it 'yields without altering I18n.locale' do # rubocop:disable RSpec/ExampleLength, RSpec/MultipleExpectations
       ran = false
 
       I18n.with_locale(:fr) do
