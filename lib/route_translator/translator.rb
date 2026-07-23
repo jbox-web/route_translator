@@ -47,6 +47,9 @@ module RouteTranslator
     end
 
 
+    # Resolves, at call time, which localized helper to dispatch to based on the
+    # current I18n.locale: a "native_<locale>" helper when the caller defines one,
+    # then the plain "<locale>" helper, falling back to the default locale.
     def route_name_for(_args, old_name, suffix, kaller)
       current_locale_name = I18n.locale.to_s.underscore
 
@@ -66,6 +69,8 @@ module RouteTranslator
     private
 
 
+      # Returns nil when a translation is missing and fallback is disabled, so
+      # translations_for drops that locale instead of drawing a broken route.
       def translate_path(path, locale, scope)
         do_translate_path(path, locale, scope)
       rescue I18n::MissingTranslationData => e
@@ -73,13 +78,20 @@ module RouteTranslator
       end
 
 
+      # Matches a trailing optional group such as "(.:format)" at the end of a path.
       FINAL_OPTIONAL_SEGMENTS = %r{(\([^/]+\))$}
       private_constant :FINAL_OPTIONAL_SEGMENTS
 
+      # Repairs the "/(/" produced when segments are re-joined around an inline
+      # optional group, collapsing it back to "(/".
       JOINED_SEGMENTS = %r{/\(/}
       private_constant :JOINED_SEGMENTS
 
 
+      # Translates every segment of a path and, for non-default locales, prefixes
+      # the locale segment (e.g. "/es/..."). The trailing optional group is set
+      # aside before splitting and re-appended verbatim so its punctuation is
+      # never translated.
       def do_translate_path(path, locale, scope) # rubocop:disable Metrics/AbcSize
         new_path = path.dup
 
@@ -99,6 +111,9 @@ module RouteTranslator
       end
 
 
+      # Builds the localized route name ("about" -> "about_es"), returning nil
+      # when the name is blank or that localized name is already registered, so
+      # the caller skips it rather than clobbering an existing route.
       def translate_name(name, locale, named_routes_names)
         return if name.blank?
 
@@ -125,10 +140,18 @@ module RouteTranslator
       SEGMENT_PART = /(\()$/
       private_constant :SEGMENT_PART
 
+      # Translates a single path segment to its localized, URL-safe form.
+      #
+      # Segments that Rails resolves at request time are passed through
+      # untouched: empty strings, optional groups "(...)", globs "*rest" and
+      # dynamic params ":id". A static word is looked up in the routes scope
+      # and falls back to itself when no translation exists.
       # rubocop:disable Metrics/CyclomaticComplexity
       def translate_segment(segment, locale, scope)
         return segment if segment.empty?
 
+        # A dynamic param may carry a static hyphenized suffix (":id-category"):
+        # keep the param verbatim and recurse to translate only the suffix.
         if segment.starts_with?(':')
           named_param, hyphenized = segment.split('-', 2)
           return "#{named_param}-#{translate_segment(hyphenized, locale, scope)}" if hyphenized
@@ -136,6 +159,8 @@ module RouteTranslator
 
         return segment if segment.starts_with?('(') || segment.starts_with?('*') || segment.include?(':')
 
+        # Detach a trailing "(" (start of an optional group) before the lookup,
+        # then re-append it so the optional wrapper survives translation.
         appended_part = segment.slice!(SEGMENT_PART)
         str = translatable_segment(segment)
 
@@ -161,6 +186,10 @@ module RouteTranslator
       end
 
 
+      # Two-phase I18n lookup. First probes the fully-scoped key
+      # (routes.controllers.<controller>...) with a non-raising handler; when that
+      # key is missing it retries under the plain :routes scope (see
+      # #fallback_options), otherwise it returns the scoped translation directly.
       def translate_resource(str, locale, scope)
         handler = proc { |exception| exception }
         opts    = { locale: locale, scope: scope }
@@ -183,6 +212,8 @@ module RouteTranslator
       end
 
 
+      # Strips the "native_" marker so a native locale (native_es) maps back to
+      # its real I18n locale (es) for translation lookups.
       def sanitize(locale)
         locale.to_s.gsub('native_', '')
       end
@@ -198,6 +229,9 @@ module RouteTranslator
       end
 
 
+      # When fallback is disabled on a non-default locale, defer to I18n's own
+      # fallback chain (no per-string default) so a genuinely missing translation
+      # surfaces as an error; otherwise default back to the untranslated string.
       def fallback_options(str, locale)
         if disable_fallback && locale.to_sym != default_locale.to_sym
           { scope: :routes, fallback: true }
