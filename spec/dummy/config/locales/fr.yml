@@ -10,6 +10,9 @@ fr:
     category: categorie
     new_category: nouveau
     sold: vendues
+    controllers:
+      pages:
+        contact: contact
 
   text:
     welcome: Bienvenue

@@ -10,6 +10,9 @@ en:
     category: category
     new_category: new
     sold: sold
+    controllers:
+      pages:
+        contact: contact
 
   text:
     welcome: Welcome

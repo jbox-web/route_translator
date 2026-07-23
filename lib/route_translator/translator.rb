@@ -131,7 +131,7 @@ module RouteTranslator
 
         if segment.starts_with?(':')
           named_param, hyphenized = segment.split('-', 2)
-          return "#{named_param}-#{translate(hyphenized, locale, scope)}" if hyphenized
+          return "#{named_param}-#{translate_segment(hyphenized, locale, scope)}" if hyphenized
         end
 
         return segment if segment.starts_with?('(') || segment.starts_with?('*') || segment.include?(':')

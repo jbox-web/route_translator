@@ -10,6 +10,9 @@ es:
     category: categoria
     new_category: nueva
     sold: vendidos
+    controllers:
+      pages:
+        contact: contacto
 
   text:
     welcome: Bienvenidos

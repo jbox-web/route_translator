@@ -12,6 +12,13 @@ RSpec.describe Dummy::Application, type: :routing do
       it { expect(get: 'http://main-domain.local/es/sobre').to  route_to({ 'controller' => 'pages', 'action' => 'about', 'locale' => 'es' }) }
       it { expect(get: 'http://main-domain.local/en/about').to  route_to({ 'controller' => 'pages', 'action' => 'about', 'locale' => 'en' }) }
     end
+
+    describe 'nameless route with controller-scoped translation' do
+      it { expect(get: 'http://main-domain.local/contact').to     route_to({ 'controller' => 'pages', 'action' => 'contact', 'locale' => 'fr' }) }
+      it { expect(get: 'http://main-domain.local/es/contacto').to route_to({ 'controller' => 'pages', 'action' => 'contact', 'locale' => 'es' }) }
+      it { expect(get: 'http://main-domain.local/pt/contato').to  route_to({ 'controller' => 'pages', 'action' => 'contact', 'locale' => 'pt' }) }
+      it { expect(get: 'http://main-domain.local/en/contact').to  route_to({ 'controller' => 'pages', 'action' => 'contact', 'locale' => 'en' }) }
+    end
   end
 
   describe CategoriesController, type: :routing do

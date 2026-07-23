@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     localized(:main_site) do
       get 'about', to: 'pages#about', as: :about
 
+      # Nameless route (no `as:`) whose segment is only translated under the
+      # controller-scoped I18n key (routes.controllers.pages.contact).
+      get 'contact', to: 'pages#contact'
+
       resources :categories, path_names: { new: 'new_category' }
 
       namespace :admin do
